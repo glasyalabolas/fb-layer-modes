@@ -73,7 +73,7 @@ dim as fb.image ptr img = fromTGA( "data/star.tga" )
 '' loads an image to be used as background 
 dim as fb.image ptr dest = imageCreate( scrW, scrH )
 
-bload( "data/back2.bmp", dest )
+bload( "data/back.bmp", dest )
 
 '' this var holds the time it takes to perform one blit
 dim as double t
