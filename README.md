@@ -1,5 +1,5 @@
 # fb-layer-modes
-Simple demo to show how to implement blending modes such as the ones in GIMP.
+Simple demo to show how to implement layer blending modes such as the ones found in the GIMP.
 
 There are 31 of them implemented, shown here in alphabetic order:
   Addition
@@ -35,6 +35,6 @@ There are 31 of them implemented, shown here in alphabetic order:
   Tint
 
 The 'layer modes.bas' contains a simple demo showing all of them (see the comments in the code for the keybindings)
-And 'benchmark.bas' does a simple test to compare the blitter with the equivalent functionality implemented using FB's PUT statement with the custom mode. Only 'Alpha' blending mode is compared, which is the basic alpha composition with support for opacity.
+And 'benchmark.bas' does a simple test to compare the blitter with the equivalent functionality implemented using FB's PUT statement with the custom mode. Only 'Alpha' blending mode is compared, which is the basic alpha compositing with support for opacity.
 
 Have fun!
