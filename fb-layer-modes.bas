@@ -5,6 +5,22 @@
 #include once "inc/blitter.bi"
 #include once "fbgfx.bi"
 
+function ema( byval value as double = 0.0, byval period as double = 1.0, byval zero as boolean = false ) as double
+	/'
+		EMA (Exponential Moving Average) implementation		
+	'/
+	static as double avg
+	
+	if( zero = true ) then
+		avg = 0.0
+	end if
+	
+	dim as double smoothFactor = 2.0 / ( 1.0 + period )	
+	avg = avg * ( 1.0 - smoothFactor ) + value * smoothFactor 
+	
+	return( avg )
+end function
+
 /'
 	This is for the demo purposes. Defines a data structure to group all blending modes
 	together so it's easier to swith them at run-time
@@ -116,6 +132,9 @@ dim as string keyP
 '' current blend mode
 dim as integer currBlendMode = 0
 
+dim as double t
+dim as double blitsPerSecond = ema( 20, 250, true )
+
 do
 	'' get a key press
 	keyP = lcase( inkey() )
@@ -183,11 +202,15 @@ do
 			blits to the screen buffer. Try creating a fb.image buffer (with imageCreate() ) and passing it as a parameter to
 			the blendedBlit() function to blit in another buffer		
 		'/
+		t = timer()
 		blendedBlit( x - img->width shr 1, y - img->height shr 1, img, , blendModes( currBlendMode ).func, opacity, blendModes( currBlendMode ).param )
+		t = timer() - t
 	screenUnlock()
 	
+	blitsPerSecond = ema( t, 250 )
+	
 	windowTitle( fbVersion & " - Blending mode: " & blendModes( currBlendMode ).name & _
-		" - Opacity: " & trim( str( opacity ) ) & " - Parameter: " & trim( str( param ) ) )
+		" - Opacity: " & trim( str( opacity ) ) & " - Parameter: " & trim( str( param ) ) & " - BPS: " & str( int( 1 / blitsPerSecond ) ) )
 	
 	sleep( 2 )
 loop until( multikey( fb.sc_escape ) )
