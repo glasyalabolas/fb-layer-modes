@@ -1,5 +1,5 @@
 # fb-layer-modes
-Simple demo to show how to implement blending modes such as the ones in GIMP
+Simple demo to show how to implement blending modes such as the ones in GIMP.
 
 There are 31 of them implemented, shown here in alphabetic order:
   Addition
