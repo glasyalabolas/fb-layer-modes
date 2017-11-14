@@ -159,7 +159,6 @@ do
 	/'
 		Some keybindings
 		
-		'0' - switches between my implementation of the blitter and FB put command
 		'+' - increments opacity
 		'-' - decrements opacity
 		'w' - increases 'parameter'
