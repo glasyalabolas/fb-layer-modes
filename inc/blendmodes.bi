@@ -271,10 +271,10 @@ function bmTint( byref src as RGBAColor, byref dst as RGBAColor, byval opacity a
 	dim as int32 ptr c = cast( int32 ptr, param )
 
 	return( rgba( _
-		dst.r + ( src.a * ( clamp( 0, 255, ( src.r + *( c ) ) ) - dst.r ) ) shr 8, _
-		dst.g + ( src.a * ( clamp( 0, 255, ( src.g + *( c + 1 ) ) ) - dst.g ) ) shr 8, _
-		dst.b + ( src.a * ( clamp( 0, 255, ( src.b + *( c + 2 ) ) ) - dst.b ) ) shr 8, _
-		dst.a + ( src.a * ( src.a - dst.a ) ) shr 8 ) )	
+		dst.r + ( opacity * ( ( dst.r + ( src.a * ( dst.r + ( src.a * ( clamp( 0, 255, ( src.r + *( c ) ) ) - dst.r ) ) shr 8 - dst.r ) ) shr 8 ) - dst.r ) shr 8 ), _
+		dst.g + ( opacity * ( ( dst.g + ( src.a * ( dst.g + ( src.a * ( clamp( 0, 255, ( src.g + *( c + 1 ) ) ) - dst.g ) ) shr 8 - dst.g ) ) shr 8 ) - dst.g ) shr 8 ), _
+		dst.b + ( opacity * ( ( dst.b + ( src.a * ( dst.b + ( src.a * ( clamp( 0, 255, ( src.b + *( c + 2 ) ) ) - dst.b ) ) shr 8 - dst.b ) ) shr 8 ) - dst.b ) shr 8 ), _
+		dst.a + ( opacity * ( ( dst.a + ( src.a * ( src.a - dst.a ) ) shr 8 ) - dst.a ) shr 8 ) ) )	
 end function
 
 function bmBrightness( byref src as RGBAColor, byref dst as RGBAColor, byval opacity as ubyte = 255, byval param as any ptr = 0 ) as uint32
