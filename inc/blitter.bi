@@ -30,7 +30,8 @@ sub blendedBlit( _
 	
 	dim as integer dstBufferWidth = any
 	dim as integer dstBufferHeight = any
-	dim as integer dstPitch, dstBpp
+	dim as integer dstPitch = any 
+	dim as integer dstBpp = any
 	
 	dstStartX = max( 0, x )
 	dstStartY = max( 0, y )
