@@ -59,12 +59,8 @@ dim as blendMode blendModes( 0 to 30 )
 dim as ubyte opacity = 255
 '' controls the 'parameter' of the blender
 dim as integer param = 255
-/'
-	This is used by the 'Tint' blending mode. It adds or substracts this color to the image, thus 'tinting' it
-	Currently, its set to orange, but feel free to experiment with this one, and also use other image (the image
-	used in the demo is already too orange, try with 'rayne.tga' to better feel the effect ;)
-'/
-dim as int32 tintColors( 0 to 2 ) = { 255, 128, 0 }
+
+dim as tintParams tint = tintParams( 255, rgba( 255, 128, 0, 255 ) )
 
 /'
 	Set the needed parameters for each blending mode
@@ -109,14 +105,14 @@ setBlendMode( "Screen", 26, @bmScreen, @param )
 setBlendMode( "Soft Light", 27, @bmSoftLight, @param )
 setBlendMode( "Stamp", 28, @bmStamp, @param )
 setBlendMode( "Substract", 29, @bmSubstract, @param )
-setBlendMode( "Tint", 30, @bmTint, @tintColors( 0 ) )
+setBlendMode( "Tint", 30, @bmTint, @tint )
 
 '' set a screen mode
 dim as integer scrW = 1000, scrH = 600, scrPitch, scrBpp
 screenRes( scrW, scrH, 32 )
 
 '' loads an image to blit
-dim as fb.image ptr img = fromTGA( "data/star.tga" )
+dim as fb.image ptr img = fromTGA( "data/99605.tga" )
 
 '' loads an image to be used as background 
 dim as fb.image ptr dest = imageCreate( scrW, scrH )
@@ -159,6 +155,7 @@ do
 	/'
 		Some keybindings
 		
+		'0' - switches between my implementation of the blitter and FB put command
 		'+' - increments opacity
 		'-' - decrements opacity
 		'w' - increases 'parameter'
@@ -176,8 +173,10 @@ do
 			opacity = max( 0, opacity - 1 )
 		case "w"
 			param += 1
+			tint.amount += 1
 		case "q"
 			param -= 1
+			tint.amount -= 1
 		case "1"
 			currBlendMode = max( 0, currBlendMode - 1 ) 
 		case "2"
@@ -185,6 +184,7 @@ do
 		case "r"
 			opacity = 255
 			param = 255 
+			tint.amount = 255
 	end select
 	
 	'' needed for the 'bmDissolve' function, so rnd() returns the same values

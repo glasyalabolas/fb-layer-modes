@@ -68,7 +68,7 @@ dim as integer scrW = 1000, scrH = 600, scrPitch, scrBpp
 screenRes( scrW, scrH, 32 )
 
 '' loads an image to blit
-dim as fb.image ptr img = fromTGA( "data/star.tga" )
+dim as fb.image ptr img = fromTGA( "data/99605.tga" )
 
 '' loads an image to be used as background 
 dim as fb.image ptr dest = imageCreate( scrW, scrH )
