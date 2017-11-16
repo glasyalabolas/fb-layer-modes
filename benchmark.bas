@@ -64,7 +64,7 @@ function customAlphaBlend( byval source as uinteger, byval dest as uinteger, byv
 end function
 
 '' set a screen mode
-dim as integer scrW = 1000, scrH = 600, scrPitch, scrBpp
+dim as integer scrW = 1280, scrH = 720, scrPitch, scrBpp
 screenRes( scrW, scrH, 32 )
 
 '' loads an image to blit
