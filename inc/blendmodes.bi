@@ -2,6 +2,9 @@
 #include once "colorproc.bi"
 #include once "fbgfx.bi"
 
+type as function( as RGBAColor, as RGBAColor, as ubyte = 255, as any ptr = 0 ) as uint32 _
+  blendFunc
+
 /'
   Struct used for the bmTint blending function.
   
