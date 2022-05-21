@@ -37,4 +37,6 @@ There are 31 of them implemented, shown here in alphabetic order:
 The 'layer modes.bas' contains a simple demo showing all of them (see the comments in the code for the keybindings)
 And 'benchmark.bas' does a simple test to compare the blitter with the equivalent functionality implemented using FB's PUT statement with the custom mode. Only 'Alpha' blending mode is compared, which is the basic alpha compositing with support for opacity.
 
+![Imagen27](https://user-images.githubusercontent.com/33088504/169664866-a40fc37d-4f5e-4580-82ae-8e97515ab187.png)
+
 Have fun!
